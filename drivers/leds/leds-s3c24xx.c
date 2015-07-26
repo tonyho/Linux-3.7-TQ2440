@@ -105,6 +105,9 @@ static int s3c24xx_led_probe(struct platform_device *dev)
 		gpio_direction_output(pdata->gpio,
 			pdata->flags & S3C24XX_LEDF_ACTLOW ? 1 : 0);
 
+	if(pdata->name == "backlight")
+        gpio_set_value(pdata->gpio,1);
+
 	/* register our new led device */
 
 	ret = led_classdev_register(&dev->dev, &led->cdev);
